@@ -177,6 +177,86 @@
     .social-media { display: flex; gap: 15px; margin-top: 15px; }
     .social-icon { width: 20px; height: 20px; transition: transform 0.3s ease; }
     .social-icon:hover { transform: scale(1.2); }
+
+    /* ===========================
+   RESPONSIVE (untuk HP & Tablet)
+   =========================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  nav {
+    padding: 15px 20px;
+  }
+  .logo img {
+    height: 60px;
+    margin-right: 40px;
+  }
+  .nav-links {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    font-size: 14px;
+  }
+  .video-text h1 { font-size: 28px; }
+  .video-text h2 { font-size: 18px; }
+}
+
+/* HP */
+@media (max-width: 768px) {
+  /* Navbar jadi menu burger */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: linear-gradient(to right, #5a7fa3, #123566);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+  }
+  .nav-links.show {
+    display: flex;
+  }
+  .burger {
+    display: block;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  .burger div {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 5px;
+    transition: 0.3s;
+  }
+
+  .video-text h1 { font-size: 22px; }
+  .video-text h2 { font-size: 14px; }
+  .video-text h3 { font-size: 12px; }
+
+  .image-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-col iframe {
+    width: 100%;
+    height: 180px;
+  }
+}
+
+    
   </style>
 </head>
 <body>
@@ -203,6 +283,11 @@
       <a href="development.html">Development</a>
       <a href="planning.html">Planning</a>
     </div>
+    <div class="burger" id="burgerMenu">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
   </nav>
 
   <!-- VIDEO BACKGROUND -->
@@ -322,6 +407,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 500); // waktu untuk transisi fade out
   }, 3000);
 });
+</script>
+
+  <script>
+  const burger = document.getElementById('burgerMenu');
+  const navLinks = document.querySelector('.nav-links');
+  
+  burger.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
 </script>
 
 
