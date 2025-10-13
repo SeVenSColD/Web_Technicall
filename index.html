@@ -176,7 +176,41 @@
     }
     .social-media { display: flex; gap: 15px; margin-top: 15px; }
     .social-icon { width: 20px; height: 20px; transition: transform 0.3s ease; }
-    .social-icon:hover { transform: scale(1.2); }
+    .social-icon:hover { transform: scale(1.2); 
+
+    .burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.burger div {
+  width: 100%;
+  height: 3px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+/* animasi ketika aktif */
+.burger.active div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.burger.active div:nth-child(2) {
+  opacity: 0;
+}
+.burger.active div:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+}
+
 
 /* ================================
    RESPONSIVE MOBILE
@@ -401,21 +435,23 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-  <script>
-  const menuToggle = document.querySelector('.menu-toggle');
+<script>
+  const menuToggle = document.querySelector('.burger'); // sebelumnya .menu-toggle
   const navLinks = document.querySelector('.nav-links');
 
   menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('show');
+    menuToggle.classList.toggle('active'); // opsional animasi burger
   });
 
-  // Opsional: supaya menu tertutup lagi setelah klik salah satu link
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('show');
+      menuToggle.classList.remove('active');
     });
   });
 </script>
+
   
 </body>
 </html>
