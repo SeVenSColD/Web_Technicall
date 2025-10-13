@@ -152,30 +152,59 @@
 
 /* Mobile */
 @media (max-width: 768px) {
-  /* Navbar berubah jadi menu vertikal */
+  /* Navbar: buat lebih rapat dan rata */
   #navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 
   .logo img {
-    height: 50px;
-    margin: 0 0 10px 0;
+    height: 45px;
+    margin: 0;
   }
 
+  /* Tombol burger */
+  .menu-toggle {
+    display: block;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    margin: 0;
+    position: absolute;
+    top: 20px;        /* jarak dari atas */
+    right: 20px;      /* jarak dari kanan */
+    z-index: 2000;    /* biar tidak ketutupan elemen lain */
+  }
+
+  /* Nav-links dropdown */
   .nav-links {
+    display: none;
     flex-direction: column;
-    gap: 10px;
+    background: linear-gradient(to right, #5a7fa3, #123566);
     width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .nav-links.show {
+    display: flex;
   }
 
   .nav-links a {
-    display: block;
-    padding: 8px 0;
-    width: 100%;
+    padding: 12px 20px;
     border-bottom: 1px solid rgba(255,255,255,0.2);
   }
+}
+
 
   /* Hero section */
   .hero {
