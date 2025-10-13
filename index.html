@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AP Technical</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      background: #fff;
+      color: black;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 15px 50px;
+      background: linear-gradient(to right, #5a7fa3, #123566);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+    nav.hide { transform: translateY(-100%); }
+    .logo img { height: 80px; margin-right: 220px; }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 100%; height: 2px;
+      bottom: 0; left: 0;
+      background-color: white;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { transform: scaleX(1); }
+
+    /* VIDEO SECTION */
+    .video-wrapper {
+      position: relative;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+      margin-top: 110px;
+      background: #121212;
+    }
+    .video-wrapper video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: translateY(-10px);
+    }
+    .video-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      z-index: 2;
+    }
+
+    /* CARDS SECTION */
+    .cards-wrapper {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.53), #ffffff),
+                  url("images/bghome1.png") no-repeat center center/cover;
+      padding: 150px 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+    .cards-wrapper.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section-logo {
+      position: absolute;
+      top: 35px; right: 80px;
+      width: 150px;
+      opacity: 0.9;
+    }
+    .image-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .card {
+      position: relative;
+      width: 280px;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .card img {
+      width: 100%;
+      display: block;
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+    }   
+    .text-overlay {
+      position: absolute;
+      top: 10px; left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    }
+    .card:hover { transform: scale(1.05); box-shadow: 0 12px 30px rgba(0,0,0,0.25); }
+    .card:hover img { transform: scale(1.1); }
+
+    /* SPLASH SCREEN */
+    .splash-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .splash-screen video {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .main-content { opacity: 0; transition: opacity 0.5s ease; }
+    .main-content.visible { opacity: 1; }
+
+    /* FOOTER */
+    .footer-main {
+      background: #121212;
+      color: #ddd;
+      padding: 60px 40px 20px;
+    }
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .footer-col h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col ul li { margin-bottom: 10px; font-size: 15px; }
+    .footer-col ul li a { color: #bbb; text-decoration: none; }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-bottom {
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+      border-top: 1px solid #333;
+      padding-top: 15px;
+    }
+    .social-media { display: flex; gap: 15px; margin-top: 15px; }
+    .social-icon { width: 20px; height: 20px; transition: transform 0.3s ease; }
+    .social-icon:hover { transform: scale(1.2); }
+  </style>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div class="splash-screen" id="splashScreen">
+  <img src="images/tech2.gif" alt="Opening Animation" id="splashGif">
+</div>
+
+
+<!-- MAIN CONTENT -->
+<div class="main-content" id="mainContent">
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">
+      <img src="images/logoinjourney.png" alt="Logo">
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Our Service</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="development.html">Development</a>
+      <a href="planning.html">Planning</a>
+    </div>
+  </nav>
+
+  <!-- VIDEO BACKGROUND -->
+  <div class="video-wrapper">
+    <video autoplay muted loop playsinline>
+      <source src="videos/vid-bg1.mp4" type="video/mp4">
+      Browser Anda tidak mendukung video.
+    </video>
+    <div class="video-text">
+      <h1>Selamat Datang</h1>
+      <h2>Bandar Udara Internasional Sultan Aji Muhammad Sulaiman</h2>
+      <hr>
+      <h3>Technical Support</h3>
+    </div>
+  </div>
+
+  <!-- CARDS SECTION -->
+  <section class="cards-wrapper">
+    <img src="images/logoinjourney.png" alt="Logo" class="section-logo">
+    <h2 class="section-title">Taking Care of Your Problem</h2>
+    <div class="image-container">
+      <div class="card"><img src="images/card1.jpg" alt="Integrated System"><div class="text-overlay">Integrated System</div></div>
+      <div class="card"><img src="images/card2.jpg" alt="Quality Control"><div class="text-overlay">Quality Control</div></div>
+      <div class="card"><img src="images/card3.jpg" alt="Learning and Sharing"><div class="text-overlay">Learning and Sharing</div></div>
+      <div class="card"><img src="images/card4.jpg" alt="Operator"><div class="text-overlay">Operator</div></div>
+      <div class="card"><img src="images/card5.jpeg" alt="Certified Technician"><div class="text-overlay">Certified Technician</div></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer-main">
+    <div class="footer-container">
+      <div class="footer-col">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15951.83346854826!2d116.9027472!3d-1.2680568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df1480f07a8ef1b%3A0x6c0afc08a88d40f!2sBandar%20Udara%20Internasional%20Sultan%20Aji%20Muhammad%20Sulaiman%20Sepinggan!5e0!3m2!1sid!2sid!4v1693430000000!5m2!1sid!2sid"
+          width="250" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <div class="footer-col">
+        <h3>TI</h3>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Our Services</a></li>
+        </ul>
+        <h3>Support</h3>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Innovation</h3>
+        <ul>
+          <li><a href="development.html">Development</a></li>
+          <li><a href="planning.html">Planning</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Our Vendor</h3>
+        <ul><li>PT. Angkasa Pura Supports</li></ul>
+        <h3>Follow Us</h3>
+        <div class="social-media">
+          <a href="https://www.instagram.com/ap_supports.bpn" target="_blank">
+            <img src="images/instagram.png" alt="Instagram" class="social-icon">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Sepinggan, Balikpapan Selatan, Kota Balikpapan, Kalimantan Timur</p>
+      <p>Telp : 0542 - 757 - 7009</p>
+      <p>Email : <a href="mailto:elband.sepinganairport@gmail.com">elband.sepinganairport@gmail.com</a></p>
+    </div>
+  </footer>
+
+</div><!-- end main-content -->
+
+<!-- SCRIPT NAVBAR -->
+<script>
+let lastScrollTop = 0;
+const navbar = document.querySelector("nav");
+window.addEventListener("scroll", function() {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  if (scrollTop > lastScrollTop) { navbar.classList.add("hide"); } 
+  else { navbar.classList.remove("hide"); }
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+</script>
+
+<!-- SCRIPT CARD ANIMASI -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const section = document.querySelector(".cards-wrapper");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        section.classList.add("show");
+      } else {
+        section.classList.remove("show");
+      }
+    });
+  }, { threshold: 0.3 });
+  observer.observe(section);
+});
+</script>
+
+<!-- SCRIPT SPLASH SCREEN -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const splashScreen = document.getElementById("splashScreen");
+  const mainContent = document.getElementById("mainContent");
+
+  // 3000 ms = 3 detik
+  setTimeout(() => {
+    splashScreen.style.opacity = "0";   // efek fade out
+    setTimeout(() => {
+      splashScreen.style.display = "none";
+      mainContent.classList.add("visible");
+    }, 500); // waktu untuk transisi fade out
+  }, 3000);
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,372 @@
+        body {
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+            background: #fff;
+            color: #000;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* NAVBAR */
+        #navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 15px 70px;
+            background: linear-gradient(to right, #5a7fa3, #123566);
+            transition: top 0.3s ease;
+            z-index: 1000;
+        }
+        #navbar.hidden { top: -100px; }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+            margin-right: 220px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            margin-left: 5px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background-color: white;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url("{{ asset('images/development0.jpeg') }}") center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+        }
+        .hero h1 {
+            position: relative;
+            font-size: 3rem;
+            font-weight: 700;
+            z-index: 1;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        /* Development Content Section */
+        .development-content {
+            padding: 80px 50px;
+            background: #fff;
+            position: relative;
+            z-index: 1;
+            overflow: hidden; /* Untuk memastikan background tidak keluar dari area */
+        }
+
+        /* Background Elements untuk development-content */
+        .dev-bg-left, .dev-bg-right {
+            position: absolute;
+            width: 600px; /* Diperbesar dari 300px menjadi 400px */
+            height: 500px; /* Diperbesar dari 300px menjadi 400px */
+            z-index: -1;
+            opacity: 0.5; /* Sedikit dikurangi opacity agar tidak terlalu mencolok */
+            object-fit: contain;
+        }
+
+        .dev-bg-left {
+            top: 50%;
+            left: -60px; /* Posisi di luar area content di sebelah kiri */
+            transform: translateY(-50%); /* Posisikan di tengah secara vertikal */
+        }
+
+        .dev-bg-right {
+            top: 50%;
+            right: -60px; /* Posisi di luar area content di sebelah kanan */
+            transform: translateY(-50%) scaleX(-1); /* Mirror effect dan posisi tengah vertikal */
+        }
+
+        .development-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .development-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .development-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #5a7fa3, #123566);
+        }
+
+        .development-items {
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2; /* Pastikan item di atas background */
+        }
+
+        .development-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #f9f9f9;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .development-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .development-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .item-letter {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #123566;
+            margin-right: 20px;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-image {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .item-image:hover {
+            transform: scale(1.02);
+        }
+
+        .item-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .item-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stagger animation for items */
+        .development-item:nth-child(1) { transition-delay: 0.1s; }
+        .development-item:nth-child(2) { transition-delay: 0.2s; }
+        .development-item:nth-child(3) { transition-delay: 0.3s; }
+
+        /* CSS untuk modal gambar */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 900px;
+            max-height: 80%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 5px solid white;
+            border-radius: 5px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            color: #bbb;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dev-bg-left, .dev-bg-right {
+                width: 250px; /* Ukuran lebih kecil untuk mobile */
+                height: 250px;
+            }
+            
+            .dev-bg-left {
+                left: -50px;
+            }
+            
+            .dev-bg-right {
+                right: -50px;
+            }
+            
+            .hero {
+                height: 70vh;
+            }
+            
+            .development-content {
+                padding: 60px 20px;
+            }
+            
+            .development-title {
+                font-size: 1.8rem;
+            }
+            
+            .development-item {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .item-letter {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .logo img {
+                margin-right: 100px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                max-width: none;
+            }
+        }
+
+        /* ====== Footer ====== */
+        .footer-main {
+          background: #121212;
+          color: #ddd;
+          padding: 60px 40px 20px;
+        }
+        .footer-container {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 40px;
+          margin-bottom: 30px;
+        }
+        .footer-col { flex: 1 1 200px; }
+        .footer-col h3 { font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #fff; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 10px; font-size: 15px; }
+        .footer-col ul li a { color: #bbb; text-decoration: none; transition: color 0.3s ease; }
+        .footer-col ul li a:hover { color: #fff; }
+        .footer-bottom {
+          text-align: center;
+          font-size: 14px;
+          color: #aaa;
+          border-top: 1px solid #333;
+          padding-top: 15px;
+        }
+        .footer-bottom a { color: #bbb; }
+        .footer-bottom a:hover { color: #fff; }
+
+        /* Tambahkan di bagian style CSS */
+.social-media {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.social-icon {  
+  width: 20px; /* Perkecil dari 30px menjadi 20px */
+  height: 20px; /* Perkecil dari 30px menjadi 20px */
+  transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
