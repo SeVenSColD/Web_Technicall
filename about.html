@@ -120,6 +120,135 @@
       10% { opacity: 0.7; }
       100% { stroke-dashoffset: 0; opacity: 0.4; }
     }
+
+    /* =========================
+   RESPONSIVE MOBILE & TABLET
+   ========================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .logo img {
+    height: 60px;
+    margin-right: 100px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .about-text {
+    font-size: 16px;
+    padding: 10px 15px;
+  }
+
+  .org-image {
+    max-width: 90%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  /* Navbar berubah jadi menu vertikal */
+  #navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  .logo img {
+    height: 50px;
+    margin: 0 0 10px 0;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 8px 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* Hero section */
+  .hero {
+    height: 60vh;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  /* Konten about */
+  .about-container {
+    padding: 0 15px;
+  }
+
+  .about-text {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  /* Gambar responsif */
+  .about-image, .org-image {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Footer jadi kolom tumpuk */
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-col {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  iframe {
+    width: 100%;
+  }
+}
+
+/* Mobile kecil (HP lama) */
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-text p {
+    font-size: 0.9rem;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  .about-text {
+    font-size: 14px;
+  }
+}
+
   </style>
 </head>
 <body>
