@@ -249,6 +249,43 @@
   }
 }
 
+    /* Burger menu hanya tampil di mobile */
+.menu-toggle {
+  display: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* Sembunyikan menu saat mobile */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: linear-gradient(to right, #5a7fa3, #123566);
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -265,7 +302,8 @@
   <div class="logo" onclick="location.href='index.html#welcome'">
     <img src="images/logoinjourney.png" alt="Logo">
   </div>
-  <div class="nav-links">
+  <div class="menu-toggle" id="menu-toggle">&#9776;</div> <!-- burger icon -->
+  <div class="nav-links" id="nav-links">
     <a href="index.html">Home</a>
     <a href="about.html" class="active">About Us</a>
     <a href="services.html">Our Service</a>
@@ -274,6 +312,7 @@
     <a href="planning.html">Planning</a>
   </div>
 </nav>
+
 
 <!-- HERO -->
 <section class="hero">
@@ -407,6 +446,49 @@
       navbar.classList.remove("hidden");
     }
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+</script>
+
+
+  <script>
+  // === Navbar toggle ===
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+
+  // Tutup menu saat klik link (biar rapi)
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('show');
+    });
+  });
+
+  // === Navbar auto hide saat scroll ===
+  let lastScrollTop = 0;
+  const navbar = document.getElementById("navbar");
+  window.addEventListener("scroll", function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+      navbar.classList.add("hidden");
+    } else {
+      navbar.classList.remove("hidden");
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+
+  // === Animasi fade-in section saat scroll ===
+  document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll(".about-section");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+        else entry.target.classList.remove("visible");
+      });
+    }, { threshold: 0.2 });
+    sections.forEach((section) => observer.observe(section));
   });
 </script>
 
