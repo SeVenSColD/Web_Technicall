@@ -69,8 +69,11 @@
   flex-direction: column;
   cursor: pointer;
   gap: 6px;
-  margin-left: 25px;    /* Geser ke kiri */
 
+  position: absolute;   /* ⬅️ penting: bebaskan dari flex */
+  left: 15px;           /* jarak dari kiri */
+  top: 50%;
+  transform: translateY(-50%);
     }
 
     .burger div {
