@@ -68,24 +68,17 @@
 }
 
 
-    /* ========== BURGER MENU ========== */
-    .burger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 6px;
-      position: absolute;   /* ⬅️ penting: bebaskan dari flex */
-      left: 100px;           /* jarak dari kiri */
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .burger div {
-      width: 25px;
-      height: 3px;
-      background: white;
-      border-radius: 3px;
-    }
+/* Tombol burger menu (hidden di desktop) */
+.menu-toggle {
+  display: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 60px;
+  z-index: 2000;
+}
 
     /* ========== VIDEO SECTION ========== */
     .video-wrapper {
@@ -329,9 +322,16 @@
       margin-top: 30px;
     }
 
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 768px) {
-    #navbar {
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .logo img {
+    height: 60px;
+    margin-right: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  #navbar {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -342,28 +342,11 @@
     height: 45px;
     margin: 0;
   }
+
   .menu-toggle {
     display: block;
   }
-      
-    @media (max-width: 768px) {
-      nav {
-        padding: 15px 20px;
-        justify-content: center;  /* Sudah ada, untuk mobile */
-      }
 
-/* Tombol burger menu (hidden di desktop) */
-.menu-toggle {
-  display: none;
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 60px;
-  z-index: 2000;
-}
-      
   .nav-links {
     display: none;
     flex-direction: column;
@@ -371,24 +354,36 @@
     width: 100%;
     position: absolute;
     top: 100%;
-    lef  t: 0;
+    left: 0;
     padding: 10px 0;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   }
 
-    }  
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links a { font-size: 14px; }
+}
 </style>
 
 </head>
 <body>
 
-<!-- Navbar -->
-<nav>
-  <div class="logo"><img src="images/logoinjourney.png" alt="Logo"></div>
-  <div class="burger" id="burger">
-    <div></div><div></div><div></div>
+<!-- ================= NAVBAR (SAMA DENGAN ABOUT) ================= -->
+<nav id="navbar">
+  <div class="logo" onclick="location.href='index.html'">
+    <img src="images/logoinjourney.png" alt="Logo">
   </div>
-  <div class="nav-links" id="navLinks">
+  <div class="menu-toggle" id="menu-toggle">&#9776;</div> <!-- burger icon -->
+  <div class="nav-links" id="nav-links">
     <a href="index.html" class="active">Home</a>
     <a href="about.html">About Us</a>
     <a href="services.html">Our Service</a>
@@ -397,6 +392,7 @@
     <a href="planning.html">Planning</a>
   </div>
 </nav>
+
 
 <!-- Video Section -->
 <div class="video-wrapper">
@@ -554,7 +550,7 @@
 </script>
 
 
-  <script>
+ <script>
   // === Navbar toggle ===
   const menuToggle = document.getElementById('menu-toggle');
   const navLinks = document.getElementById('nav-links');
@@ -563,7 +559,7 @@
     navLinks.classList.toggle('show');
   });
 
-  // Tutup menu saat klik link (biar rapi)
+  // Tutup menu saat klik link
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('show');
@@ -582,34 +578,8 @@
     }
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   });
-
-  // === Animasi fade-in section saat scroll ===
-  document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll(".about-section");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-        else entry.target.classList.remove("visible");
-      });
-    }, { threshold: 0.2 });
-    sections.forEach((section) => observer.observe(section));
-  });
 </script>
 
-<script>
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
-  });
-
-  // Opsional: supaya menu tertutup lagi setelah klik salah satu link
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('show');
-    });
-  });
 </script>
 </body>
 </html>
