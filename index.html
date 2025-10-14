@@ -95,19 +95,27 @@
     }
 
     /* CARDS SECTION */
-    .cards-wrapper {
-      width: 100%;
-      min-height: 100vh;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.53), #ffffff),
-                  url("images/bghome1.png") no-repeat center center/cover;
-      padding: 150px 20px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease-out;
-    }
+.cards-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.53), #ffffff),
+              url("images/bghome1.png") no-repeat center center/cover;
+  padding: 110px 0 80px; /* sejajarkan dengan navbar & video */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+    .cards-container {
+  max-width: 1200px; /* sejajarkan dengan isi video */
+  margin: 0 auto;
+  padding: 0 20px;   /* biar tetap responsif */
+  text-align: center;
+}
+    
     .cards-wrapper.show {
       opacity: 1;
       transform: translateY(0);
@@ -206,6 +214,15 @@
     /* ===========================
        RESPONSIVE
     =========================== */
+    @media (max-width: 768px) {
+  .cards-container {
+    padding: 0 15px;
+  }
+  .cards-wrapper {
+    padding-top: 90px;
+  }
+}
+
 
     @media (max-width: 1024px) {
       nav { padding: 15px 20px; }
@@ -305,7 +322,9 @@
   </div>
 
   <!-- CARDS SECTION -->
-  <section class="cards-wrapper">
+<!-- CARDS SECTION -->
+<section class="cards-wrapper">
+  <div class="cards-container">
     <img src="images/logoinjourney.png" alt="Logo" class="section-logo">
     <h2 class="section-title">Taking Care of Your Problem</h2>
     <div class="image-container">
@@ -315,7 +334,9 @@
       <div class="card"><img src="images/card4.jpg"><div class="text-overlay">Operator</div></div>
       <div class="card"><img src="images/card5.jpeg"><div class="text-overlay">Certified Technician</div></div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- FOOTER -->
   <footer class="footer-main">
