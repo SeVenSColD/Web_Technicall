@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
+<style>
     /* ========== GLOBAL ========== */
     body {
       margin: 0;
@@ -22,8 +22,8 @@
       top: 0; left: 0;
       width: 100%;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      align-items: center;  /* Tetap untuk alignment vertikal */
+      justify-content: center;  /* Diubah dari space-between menjadi center untuk tampilan PC */
       padding: 15px 30px;
       background: linear-gradient(to right, #5a7fa3, #123566);
       z-index: 1000;
@@ -34,18 +34,18 @@
       width: auto;
     }
 
-        .nav-links {
-  display: flex;
-  gap: 30px; /* jarak antar menu */
-}
+    .nav-links {
+      display: flex;
+      gap: 30px; /* jarak antar menu */
+    }
 
-        .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-family: 'Raleway', sans-serif;
-    position: relative;
-        }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-family: 'Raleway', sans-serif;
+      position: relative;
+    }
 
     .nav-links a::after {
       content: "";
@@ -66,15 +66,14 @@
 
     /* ========== BURGER MENU ========== */
     .burger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 6px;
-
-  position: absolute;   /* ⬅️ penting: bebaskan dari flex */
-  left: 100px;           /* jarak dari kiri */
-  top: 50%;
-  transform: translateY(-50%);
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+      position: absolute;   /* ⬅️ penting: bebaskan dari flex */
+      left: 100px;           /* jarak dari kiri */
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     .burger div {
@@ -330,12 +329,12 @@
     @media (max-width: 768px) {
       nav {
         padding: 15px 20px;
+        justify-content: center;  /* Sudah ada, untuk mobile */
       }
 
-      @media (max-width: 768px) {
-        .burger {
-          display: flex;             /* ✅ tampil hanya di mobile */
-        }
+      .burger {
+        display: flex;             /* ✅ tampil hanya di mobile */
+      }
       
       .nav-links {
         position: fixed;
@@ -354,20 +353,13 @@
         display: flex;
       }
 
-      .burger {
-        display: flex;
-      }
-
       .coverage-content {
         flex-direction: column;
         align-items: center;
       }
     }
-      
-      nav {
-    justify-content: center;   /* navbar logo tetap center di mobile */
-  }
-  </style>
+</style>
+
 </head>
 <body>
 
