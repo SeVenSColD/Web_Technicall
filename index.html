@@ -17,57 +17,56 @@
     }
 
     /* ========== NAVBAR ========== */
-    nav {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      display: flex;
-      align-items: center;  /* Tetap untuk alignment vertikal */
-      justify-content: center;  /* Diubah dari space-between menjadi center untuk tampilan PC */
-      padding: 15px 30px;
-      background: linear-gradient(to right, #5a7fa3, #123566);
-      z-index: 1000;
-    }
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px 50px;
+  background: linear-gradient(to right, #5a7fa3, #123566);
+  transition: top 0.3s ease;
+  z-index: 1000;
+}
+#navbar.hidden {
+  top: -100px;
+}
+.logo img {
+  height: 80px;
+  width: auto;
+  margin-right: 220px;
+  cursor: pointer;
+}
 
-    .logo img {
-      height: 60px;
-      width: auto;
-      margin-right: auto;
-    }
+.nav-links {
+  display: flex;
+  gap: 30px;
+  margin-left: 5px;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: white;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 30px; /* jarak antar menu */
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
 
-      margin-left: auto;
-      margin-right: auto;
-       transform: translateX(-80px); 
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-family: 'Raleway', sans-serif;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: white;
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      transform: scaleX(1);
-    }
 
     /* ========== BURGER MENU ========== */
     .burger {
@@ -332,37 +331,52 @@
 
     /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
+    #navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .logo img {
+    height: 45px;
+    margin: 0;
+  }
+  .menu-toggle {
+    display: block;
+  }
+      
+    @media (max-width: 768px) {
       nav {
         padding: 15px 20px;
         justify-content: center;  /* Sudah ada, untuk mobile */
       }
 
-      .burger {
-        display: flex;             /* ✅ tampil hanya di mobile */
-      }
+/* Tombol burger menu (hidden di desktop) */
+.menu-toggle {
+  display: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 60px;
+  z-index: 2000;
+}
       
-      .nav-links {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background: #123566;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 30px 0;
-        display: none;
-      }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: linear-gradient(to right, #5a7fa3, #123566);
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    lef  t: 0;
+    padding: 10px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
 
-      .nav-links.show {
-        display: flex;
-      }
-
-      .coverage-content {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
+    }  
 </style>
 
 </head>
