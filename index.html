@@ -12,6 +12,7 @@
       font-family: 'Raleway', sans-serif;
       background: #fff;
       color: black;
+      overflow-x: hidden;
     }
 
     /* NAVBAR */
@@ -21,14 +22,23 @@
       width: 100%;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: 15px 50px;
       background: linear-gradient(to right, #5a7fa3, #123566);
       transition: transform 0.3s ease;
       z-index: 1000;
     }
     nav.hide { transform: translateY(-100%); }
-    .logo img { height: 80px; margin-right: 220px; }
-    .nav-links { display: flex; gap: 30px; }
+
+    .logo img { 
+      height: 80px; 
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
     .nav-links a {
       color: white;
       text-decoration: none;
@@ -47,18 +57,32 @@
     .nav-links a:hover::after,
     .nav-links a.active::after { transform: scaleX(1); }
 
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px;
+      transition: 0.3s;
+    }
+
     /* VIDEO SECTION */
     .video-wrapper {
       position: relative;
-      width: 100%; height: 100vh;
+      width: 100%;
+      height: 100vh;
       overflow: hidden;
       margin-top: 110px;
       background: #121212;
     }
     .video-wrapper video {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      transform: translateY(-10px);
     }
     .video-text {
       position: absolute;
@@ -71,7 +95,6 @@
 
     /* CARDS SECTION */
     .cards-wrapper {
-      position: relative;
       width: 100%;
       min-height: 100vh;
       background: linear-gradient(to bottom, rgba(255,255,255,0.53), #ffffff),
@@ -90,7 +113,8 @@
     }
     .section-logo {
       position: absolute;
-      top: 35px; right: 80px;
+      top: 35px;
+      right: 80px;
       width: 150px;
       opacity: 0.9;
     }
@@ -179,83 +203,59 @@
     .social-icon:hover { transform: scale(1.2); }
 
     /* ===========================
-   RESPONSIVE (untuk HP & Tablet)
-   =========================== */
+       RESPONSIVE
+    =========================== */
 
-/* Tablet */
-@media (max-width: 1024px) {
-  nav {
-    padding: 15px 20px;
-  }
-  .logo img {
-    height: 60px;
-    margin-right: 40px;
-  }
-  .nav-links {
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-  .nav-links a {
-    font-size: 14px;
-  }
-  .video-text h1 { font-size: 28px; }
-  .video-text h2 { font-size: 18px; }
-}
+    @media (max-width: 1024px) {
+      nav { padding: 15px 20px; }
+      .logo img { height: 60px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 14px; }
+    }
 
-/* HP */
-@media (max-width: 768px) {
-  /* Navbar jadi menu burger */
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    background: linear-gradient(to right, #5a7fa3, #123566);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    padding: 15px 0;
-    text-align: center;
-  }
-  .nav-links.show {
-    display: flex;
-  }
-  .burger {
-    display: block;
-    cursor: pointer;
-    margin-left: auto;
-  }
-  .burger div {
-    width: 25px;
-    height: 3px;
-    background: white;
-    margin: 5px;
-    transition: 0.3s;
-  }
+    @media (max-width: 768px) {
+      .burger {
+        display: flex;
+      }
 
-  .video-text h1 { font-size: 22px; }
-  .video-text h2 { font-size: 14px; }
-  .video-text h3 { font-size: 12px; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: linear-gradient(to right, #5a7fa3, #123566);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 15px 0;
+        text-align: center;
+      }
+      .nav-links.show {
+        display: flex;
+      }
 
-  .image-container {
-    flex-direction: column;
-    align-items: center;
-  }
+      .video-text h1 { font-size: 22px; }
+      .video-text h2 { font-size: 14px; }
+      .video-text h3 { font-size: 12px; }
 
-  .card {
-    width: 90%;
-  }
+      .image-container {
+        flex-direction: column;
+        align-items: center;
+      }
 
-  .footer-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .footer-col iframe {
-    width: 100%;
-    height: 180px;
-  }
-}
+      .card {
+        width: 90%;
+      }
 
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-col iframe {
+        width: 100%;
+        height: 180px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -265,7 +265,6 @@
   <img src="images/tech2.gif" alt="Opening Animation" id="splashGif">
 </div>
 
-
 <!-- MAIN CONTENT -->
 <div class="main-content" id="mainContent">
 
@@ -274,7 +273,7 @@
     <div class="logo">
       <img src="images/logoinjourney.png" alt="Logo">
     </div>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About Us</a>
       <a href="services.html">Our Service</a>
@@ -283,10 +282,10 @@
       <a href="planning.html">Planning</a>
     </div>
     <div class="burger" id="burgerMenu">
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </nav>
 
   <!-- VIDEO BACKGROUND -->
@@ -308,11 +307,11 @@
     <img src="images/logoinjourney.png" alt="Logo" class="section-logo">
     <h2 class="section-title">Taking Care of Your Problem</h2>
     <div class="image-container">
-      <div class="card"><img src="images/card1.jpg" alt="Integrated System"><div class="text-overlay">Integrated System</div></div>
-      <div class="card"><img src="images/card2.jpg" alt="Quality Control"><div class="text-overlay">Quality Control</div></div>
-      <div class="card"><img src="images/card3.jpg" alt="Learning and Sharing"><div class="text-overlay">Learning and Sharing</div></div>
-      <div class="card"><img src="images/card4.jpg" alt="Operator"><div class="text-overlay">Operator</div></div>
-      <div class="card"><img src="images/card5.jpeg" alt="Certified Technician"><div class="text-overlay">Certified Technician</div></div>
+      <div class="card"><img src="images/card1.jpg"><div class="text-overlay">Integrated System</div></div>
+      <div class="card"><img src="images/card2.jpg"><div class="text-overlay">Quality Control</div></div>
+      <div class="card"><img src="images/card3.jpg"><div class="text-overlay">Learning and Sharing</div></div>
+      <div class="card"><img src="images/card4.jpg"><div class="text-overlay">Operator</div></div>
+      <div class="card"><img src="images/card5.jpeg"><div class="text-overlay">Certified Technician</div></div>
     </div>
   </section>
 
@@ -359,57 +358,61 @@
       <p>Email : <a href="mailto:elband.sepinganairport@gmail.com">elband.sepinganairport@gmail.com</a></p>
     </div>
   </footer>
+</div>
 
-</div><!-- end main-content -->
-
-<!-- SCRIPT NAVBAR -->
+<!-- SCRIPT -->
 <script>
-let lastScrollTop = 0;
-const navbar = document.querySelector("nav");
-window.addEventListener("scroll", function() {
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  if (scrollTop > lastScrollTop) { navbar.classList.add("hide"); } 
-  else { navbar.classList.remove("hide"); }
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
-</script>
+  // Navbar Hide Saat Scroll
+  let lastScrollTop = 0;
+  const navbar = document.querySelector("nav");
+  window.addEventListener("scroll", function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) { navbar.classList.add("hide"); } 
+    else { navbar.classList.remove("hide"); }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
 
-<!-- SCRIPT CARD ANIMASI -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const section = document.querySelector(".cards-wrapper");
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        section.classList.add("show");
-      } else {
-        section.classList.remove("show");
-      }
+  // Burger Menu Toggle
+  const burger = document.getElementById('burgerMenu');
+  const navLinks = document.getElementById('navLinks');
+  const navItems = navLinks.querySelectorAll('a');
+
+  burger.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+    burger.classList.toggle('active');
+  });
+
+  // Tutup menu saat link diklik
+  navItems.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('show');
+      burger.classList.remove('active');
     });
-  }, { threshold: 0.3 });
-  observer.observe(section);
-});
-</script>
+  });
 
-<!-- SCRIPT SPLASH SCREEN -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const splashScreen = document.getElementById("splashScreen");
-  const mainContent = document.getElementById("mainContent");
+  // Animasi Cards
+  document.addEventListener("DOMContentLoaded", function() {
+    const section = document.querySelector(".cards-wrapper");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) section.classList.add("show");
+      });
+    }, { threshold: 0.3 });
+    observer.observe(section);
+  });
 
-  // 3000 ms = 3 detik
-  setTimeout(() => {
-    splashScreen.style.opacity = "0";   // efek fade out
+  // Splash Screen
+  document.addEventListener("DOMContentLoaded", function() {
+    const splashScreen = document.getElementById("splashScreen");
+    const mainContent = document.getElementById("mainContent");
     setTimeout(() => {
-      splashScreen.style.display = "none";
-      mainContent.classList.add("visible");
-    }, 500); // waktu untuk transisi fade out
-  }, 3000);
-});
+      splashScreen.style.opacity = "0";
+      setTimeout(() => {
+        splashScreen.style.display = "none";
+        mainContent.classList.add("visible");
+      }, 500);
+    }, 3000);
+  });
 </script>
-
-
-
-
 </body>
 </html>
