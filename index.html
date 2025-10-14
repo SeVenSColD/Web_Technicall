@@ -17,6 +17,27 @@
     }
 
     /* ========== NAVBAR ========== */
+
+      /* SPLASH SCREEN */
+    .splash-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .splash-screen video {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .main-content { opacity: 0; transition: opacity 0.5s ease; }
+    .main-content.visible { opacity: 1; }
+
+  
 #navbar {
   position: fixed;
   top: 0;
@@ -458,6 +479,11 @@ footer {
 </head>
 <body>
 
+<!-- SPLASH SCREEN -->
+<div class="splash-screen" id="splashScreen">
+  <img src="images/tech2.gif" alt="Opening Animation" id="splashGif">
+</div>
+  
 <!-- ================= NAVBAR (SAMA DENGAN ABOUT) ================= -->
 <nav id="navbar">
   <div class="logo" onclick="location.href='index.html'">
@@ -502,6 +528,7 @@ footer {
   </div>
 </section>
 
+  
 <!-- Equipment Coverage -->
 <section class="equipment-coverage">
   <h2>Airport Technology Equipment Coverage</h2>
@@ -653,6 +680,22 @@ footer {
   });
 </script>
 
+  <!-- SCRIPT SPLASH SCREEN GIF-->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const splashScreen = document.getElementById("splashScreen");
+  const mainContent = document.getElementById("mainContent");
+
+  // 3000 ms = 3 detik
+  setTimeout(() => {
+    splashScreen.style.opacity = "0";   // efek fade out
+    setTimeout(() => {
+      splashScreen.style.display = "none";
+      mainContent.classList.add("visible");
+    }, 500); // waktu untuk transisi fade out
+  }, 3000);
+});
+</script>
 
 </script>
 </body>
