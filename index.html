@@ -6,21 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <style>
-    /* ===========================
-       GLOBAL
-    =========================== */
+  <style>
+    /* ========== GLOBAL ========== */
     body {
       margin: 0;
       font-family: 'Raleway', sans-serif;
       background: #fff;
-      color: black;
+      color: #000;
       overflow-x: hidden;
     }
 
-    /* ===========================
-       NAVBAR
-    =========================== */
+    /* ========== NAVBAR ========== */
     nav {
       position: fixed;
       top: 0; left: 0;
@@ -28,374 +24,399 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 15px 50px;
+      padding: 15px 30px;
       background: linear-gradient(to right, #5a7fa3, #123566);
-      transition: transform 0.3s ease;
       z-index: 1000;
     }
-    nav.hide { transform: translateY(-100%); }
-    .logo img { height: 80px; }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+    }
+
     .nav-links {
       display: flex;
-      gap: 30px;
-      align-items: center;
+      gap: 25px;
     }
+
     .nav-links a {
       color: white;
       text-decoration: none;
       font-weight: 600;
       position: relative;
     }
+
     .nav-links a::after {
       content: "";
       position: absolute;
-      width: 100%; height: 2px;
-      bottom: 0; left: 0;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
       background-color: white;
       transform: scaleX(0);
       transition: transform 0.3s ease;
     }
+
     .nav-links a:hover::after,
-    .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    /* ========== BURGER MENU ========== */
     .burger {
       display: none;
       flex-direction: column;
       cursor: pointer;
+      gap: 6px;
     }
+
     .burger div {
       width: 25px;
       height: 3px;
       background: white;
-      margin: 4px;
-      transition: 0.3s;
+      border-radius: 3px;
     }
 
-    /* ===========================
-       VIDEO SECTION
-    =========================== */
+    /* ========== VIDEO SECTION ========== */
     .video-wrapper {
       position: relative;
       width: 100%;
       height: 100vh;
+      margin-top: 80px;
       overflow: hidden;
       background: #121212;
-      padding-top: 110px;
     }
+
     .video-wrapper video {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+
     .video-text {
       position: absolute;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      text-align: center;
       color: white;
-      z-index: 2;
+      text-align: center;
     }
 
-    /* ===========================
-       CARDS SECTION
-    =========================== */
+    .video-text h1 { font-size: 2rem; margin-bottom: 10px; }
+    .video-text h2 { font-size: 1.5rem; margin-bottom: 10px; }
+    .video-text h3 { font-size: 1.2rem; }
+
+    /* ========== CARD SECTION ========== */
     .cards-wrapper {
-      width: 100%;
-      min-height: 100vh;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.53), #ffffff),
-                  url("images/bghome1.png") no-repeat center center/cover;
-      padding: 110px 0 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease-out;
-    }
-    .cards-wrapper.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .cards-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
       text-align: center;
+      padding: 80px 20px;
     }
+
+    .cards-wrapper h2 {
+      color: #123566;
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
     .image-container {
       display: flex;
       justify-content: center;
-      gap: 20px;
       flex-wrap: wrap;
+      gap: 20px;
     }
+
     .card {
-      position: relative;
-      width: 280px;
+      width: 260px;
       border-radius: 15px;
       overflow: hidden;
+      position: relative;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
     }
+
     .card img {
       width: 100%;
       display: block;
-      border-radius: 15px;
       transition: transform 0.3s ease;
     }
+
     .text-overlay {
       position: absolute;
-      top: 10px; left: 50%;
+      top: 15px;
+      left: 50%;
       transform: translateX(-50%);
       color: white;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
     }
-    .card:hover { transform: scale(1.05); box-shadow: 0 12px 30px rgba(0,0,0,0.25); }
-    .card:hover img { transform: scale(1.1); }
 
-    /* ===========================
-       EQUIPMENT COVERAGE SECTION
-    =========================== */
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+    }
+
+    /* ========== EQUIPMENT SECTION ========== */
     .equipment-coverage {
-      position: relative;
-      width: 100%;
-      padding: 80px 50px;
-      background: rgba(255, 255, 255, 0.9);
-      margin-top: -100px;
-      overflow: hidden;
+      padding: 80px 20px;
       text-align: center;
     }
-    .equipment-coverage .section-title {
-      font-family: 'Raleway', sans-serif;
-      font-size: 36px;
-      font-weight: 700;
-      color: #123566;
-      margin-bottom: 50px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+
+    .equipment-coverage h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
     }
-    .equipment-logo {
-      position: absolute;
-      width: 100px;
-      height: auto;
-      opacity: 0.9;
-      z-index: 2;
-      animation: float 4s ease-in-out infinite;
-      filter: drop-shadow(0 0 8px rgba(0, 150, 255, 0.7));
-      transition: transform 0.3s ease;
-    }
-    .equipment-logo:hover {
-      transform: scale(1.2);
-      filter: drop-shadow(0 0 20px rgba(0, 200, 255, 1));
-    }
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0px); }
-    }
-    .logo1 { top: 20px; left: 40px; }
-    .logo2 { top: 50px; right: 60px; }
-    .logo3 { bottom: 40px; left: 80px; }
-    .logo4 { bottom: 60px; right: 200px; }
-    .logo5 { top: 10px; left: 45%; }
 
     .coverage-content {
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 40px;
+      align-items: flex-start;
       flex-wrap: wrap;
+      gap: 30px;
     }
-    .coverage-images {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 20px;
-    }
+
     .coverage-images img {
       width: 300px;
+      max-width: 100%;
       border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
-    .coverage-images img:hover { transform: scale(1.05); }
+
     .coverage-text {
       background: #222;
-      color: #fff;
-      padding: 30px;
+      color: white;
+      padding: 20px;
       border-radius: 12px;
       max-width: 500px;
-      line-height: 1.6;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
-      font-size: 16px;
-      text-align: justify;
+    }
+
+    /* ========== SKILL SECTION ========== */
+    .our-skill {
+      padding: 60px 20px;
+      text-align: center;
+      background: #f9f9f9;
+    }
+
+    .skill-wrapper {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .skill-item img {
+      width: 120px;
       transition: transform 0.3s ease;
     }
-    .coverage-text:hover { transform: translateY(-5px); }
 
-    /* ===========================
-       FOOTER
-    =========================== */
+    .skill-item img:hover {
+      transform: scale(1.1);
+    }
+
+    /* ========== VISION SECTION ========== */
+    .vision-mission-target {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .vmt-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .vmt-card {
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .vmt-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .vmt-logo {
+      width: 70px;
+      margin: 0 auto;
+    }
+
+    .vmt-image {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    /* ========== FOOTER ========== */
     .footer-main {
       background: #121212;
       color: #ddd;
-      padding: 60px 40px 20px;
+      padding: 50px 20px;
     }
+
     .footer-container {
       display: flex;
-      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 40px;
+      gap: 30px;
+      justify-content: space-between;
     }
+
     .footer-col h3 {
-      font-size: 20px;
-      font-weight: 700;
+      color: #fff;
       margin-bottom: 15px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      color: #bbb;
+      text-decoration: none;
+    }
+
+    .footer-col ul li a:hover {
       color: #fff;
     }
-    .footer-col ul { list-style: none; padding: 0; margin: 0; }
-    .footer-col ul li { margin-bottom: 10px; font-size: 15px; }
-    .footer-col ul li a { color: #bbb; text-decoration: none; }
-    .footer-col ul li a:hover { color: #fff; }
+
+    .social-media {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .social-icon {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icon:hover {
+      transform: scale(1.2);
+    }
+
     .footer-bottom {
       text-align: center;
+      padding-top: 20px;
       font-size: 14px;
       color: #aaa;
       border-top: 1px solid #333;
-      padding-top: 15px;
+      margin-top: 30px;
     }
-    .social-media { display: flex; gap: 15px; margin-top: 15px; }
-    .social-icon { width: 20px; height: 20px; transition: transform 0.3s ease; }
-    .social-icon:hover { transform: scale(1.2); }
 
-    /* ===========================
-       RESPONSIVE
-    =========================== */
-    @media (max-width: 1024px) {
-      nav { padding: 15px 20px; }
-      .logo img { height: 60px; }
-      .nav-links { gap: 20px; }
-      .nav-links a { font-size: 14px; }
-    }
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
-      .burger {
-        display: flex;
-        margin-right: 25px;
+      nav {
+        padding: 15px 20px;
       }
+
       .nav-links {
-        display: none;
-        flex-direction: column;
-        background: linear-gradient(to right, #5a7fa3, #123566);
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 80px;
         left: 0;
         width: 100%;
-        padding: 15px 0;
-        text-align: center;
+        background: #123566;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 30px 0;
+        display: none;
       }
-      .nav-links.show { display: flex; }
-      .video-text h1 { font-size: 22px; }
-      .video-text h2 { font-size: 14px; }
-      .video-text h3 { font-size: 12px; }
-      .card { width: 90%; }
-      .footer-container { flex-direction: column; text-align: center; }
-      .footer-col iframe { width: 100%; height: 180px; }
-    }
-    @media (max-width: 480px) {
-      .equipment-logo { display: none; }
-      .coverage-images img { width: 100%; }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .coverage-content {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- SPLASH SCREEN -->
-<div class="splash-screen" id="splashScreen">
-  <img src="images/tech2.gif" alt="Opening Animation" id="splashGif">
+<!-- Navbar -->
+<nav>
+  <div class="logo"><img src="images/logoinjourney.png" alt="Logo"></div>
+  <div class="burger" id="burger">
+    <div></div><div></div><div></div>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="#" class="active">Home</a>
+    <a href="#">About Us</a>
+    <a href="#">Our Service</a>
+    <a href="#">Contact Us</a>
+    <a href="#">Development</a>
+    <a href="#">Planning</a>
+  </div>
+</nav>
+
+<!-- Video Section -->
+<div class="video-wrapper">
+  <video autoplay muted loop playsinline>
+    <source src="videos/vid-bg1.mp4" type="video/mp4">
+    Browser Anda tidak mendukung video.
+  </video>
+  <div class="video-text">
+    <h1>Selamat Datang</h1>
+    <h2>Bandar Udara Internasional Sultan Aji Muhammad Sulaiman</h2>
+    <hr>
+    <h3>Technical Support</h3>
+  </div>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="main-content" id="mainContent">
-
-  <!-- NAVBAR -->
-  <nav>
-    <div class="logo">
-      <img src="images/logoinjourney.png" alt="Logo">
-    </div>
-    <div class="nav-links" id="navLinks">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="services.html">Our Service</a>
-      <a href="contact.html">Contact Us</a>
-      <a href="development.html">Development</a>
-      <a href="planning.html">Planning</a>
-    </div>
-    <div class="burger" id="burgerMenu">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </nav>
-
-  <!-- VIDEO BACKGROUND -->
-  <div class="video-wrapper">
-    <video autoplay muted loop playsinline>
-      <source src="videos/vid-bg1.mp4" type="video/mp4">
-      Browser Anda tidak mendukung video.
-    </video>
-    <div class="video-text">
-      <h1>Selamat Datang</h1>
-      <h2>Bandar Udara Internasional Sultan Aji Muhammad Sulaiman</h2>
-      <hr>
-      <h3>Technical Support</h3>
-    </div>
-  </div>
-
-  <!-- CARDS SECTION -->
-<!-- CARDS SECTION -->
+<!-- Cards Section -->
 <section class="cards-wrapper">
-  <div class="cards-container">
-    <img src="images/logoinjourney.png" alt="Logo" class="section-logo">
-    <h2 class="section-title">Taking Care of Your Problem</h2>
-    <div class="image-container">
-      <div class="card"><img src="images/card1.jpg"><div class="text-overlay">Integrated System</div></div>
-      <div class="card"><img src="images/card2.jpg"><div class="text-overlay">Quality Control</div></div>
-      <div class="card"><img src="images/card3.jpg"><div class="text-overlay">Learning and Sharing</div></div>
-      <div class="card"><img src="images/card4.jpg"><div class="text-overlay">Operator</div></div>
-      <div class="card"><img src="images/card5.jpeg"><div class="text-overlay">Certified Technician</div></div>
-    </div>
+  <h2>Taking Care of Your Problem</h2>
+  <div class="image-container">
+    <div class="card"><img src="images/card1.jpg" alt=""><div class="text-overlay">Integrated System</div></div>
+    <div class="card"><img src="images/card2.jpg" alt=""><div class="text-overlay">Quality Control</div></div>
+    <div class="card"><img src="images/card3.jpg" alt=""><div class="text-overlay">Learning and Sharing</div></div>
+    <div class="card"><img src="images/card4.jpg" alt=""><div class="text-overlay">Operator</div></div>
+    <div class="card"><img src="images/card5.jpeg" alt=""><div class="text-overlay">Certified Technician</div></div>
   </div>
 </section>
 
+<!-- Equipment Coverage -->
 <section class="equipment-coverage">
-  <!-- 🔹 Logo di pojok kanan atas -->
-  <img src="images/logo2.png" alt="Logo" class="equipment-logo logo1">
-  <img src="images/logo2.png" alt="Logo" class="equipment-logo logo2">
-  <img src="images/logo2.png" alt="Logo" class="equipment-logo logo3">
-  <img src="images/logo2.png" alt="Logo" class="equipment-logo logo4">
-  <img src="images/logo2.png" alt="Logo" class="equipment-logo logo5">
-
-  <h2 class="section-title">Airport Technology Equipment Coverage</h2>
+  <h2>Airport Technology Equipment Coverage</h2>
   <div class="coverage-content">
-    <!-- Gambar Kiri -->
     <div class="coverage-images">
       <img src="images/t1.webp" alt="Equipment 1">
       <img src="images/t2.jpg" alt="Equipment 2">
     </div>
-
-    <!-- Teks Kanan -->
     <div class="coverage-text">
       <p>
-        Peralatan yang menjadi tanggung jawab BPNLTI ada 12 yaitu BAS (Building Automation System), 
-        BIS (Building Integration System), CCTV (Closed Circuit Television), FIDS (Flight Information Display System),
-        SECURITY EQUIPMENT (X-Ray, WTMD, ETD, Handheld Metal Detector), FIRE ALARM & PANIC BUTTON, MASTER CLOCK, 
-        MATV (Master Antenna Television), TATA SUARA (PAS & AAS), TELEPON (IP Phone & Analog), JARINGAN DATA, 
-        HBS, dan GROUND COMMUNICATION.
+        Peralatan yang menjadi tanggung jawab BPNLTI ada 12 yaitu BAS, BIS, CCTV, FIDS,
+        SECURITY EQUIPMENT, FIRE ALARM & PANIC BUTTON, MASTER CLOCK, MATV, TATA SUARA,
+        TELEPON, JARINGAN DATA, HBS, dan GROUND COMMUNICATION.
       </p>
     </div>
   </div>
 </section>
 
+<!-- Skill Section -->
 <section class="our-skill">
   <h2>Our Skill</h2>
   <div class="skill-wrapper">
@@ -414,141 +435,77 @@
   </div>
 </section>
 
-<!-- Section Baru -->
+<!-- Vision Section -->
 <section class="vision-mission-target">
-  <h2 class="section-title">Our Vision Mission and Target</h2>
-
+  <h2>Our Vision Mission and Target</h2>
   <div class="vmt-container">
-    <!-- Card 1 -->
     <div class="vmt-card">
-      <img src="images/logo2.png" alt="Logo2" class="vmt-logo">
+      <img src="images/logo2.png" alt="" class="vmt-logo">
       <p>Belajar dan berbagi demi kemajuan perusahaan</p>
-      <img src="images/vision1.jpeg" alt="Foto 1" class="vmt-image">
+      <img src="images/vision1.jpeg" alt="" class="vmt-image">
     </div>
-
-    <!-- Card 2 -->
     <div class="vmt-card">
-      <img src="images/logo2.png" alt="Logo2" class="vmt-logo">
+      <img src="images/logo2.png" alt="" class="vmt-logo">
       <p>
-        Responsif dan sinergitas dalam penanganan gangguan peralatan, 
-        memberikan solusi menyeluruh untuk sistem teknologi informasi di bandara, 
-        mendorong karyawan untuk terus melakukan inovasi seiring dengan semakin pesatnya laju 
-        perkembangan teknologi informasi, berkomitmen untuk menjaga standar kualitas dalam semua lini layanan
+        Responsif dan sinergitas dalam penanganan gangguan peralatan, memberikan solusi menyeluruh 
+        untuk sistem teknologi informasi di bandara.
       </p>
-      <img src="images/vision4.jpeg" alt="Foto 2" class="vmt-image">
+      <img src="images/vision4.jpeg" alt="" class="vmt-image">
     </div>
-
-    <!-- Card 3 -->
     <div class="vmt-card">
-      <img src="images/logo2.png" alt="Logo2" class="vmt-logo">
+      <img src="images/logo2.png" alt="" class="vmt-logo">
       <p>
-        People Strategy, ditujukan untuk mengembangkan dan mengelola sumber daya manusia yang lebih efisien, 
-        Process Strategy, merancang/menata/mengusulkan alur data baik manajemen maupun operasional data dalam organisasi perusahaan. 
-        Technology Strategy, didasarkan pada prinsip pemanfaatan dan penerapan teknologi untuk mendukung pencapaian tujuan perusahaan
+        People, Process, Technology Strategy — mendukung pencapaian tujuan perusahaan.
       </p>
-      <img src="images/vision3.webp" alt="Foto 3" class="vmt-image">
+      <img src="images/vision3.webp" alt="" class="vmt-image">
     </div>
   </div>
 </section>
 
-  
-  <!-- FOOTER -->
-  <footer class="footer-main">
-    <div class="footer-container">
-      <div class="footer-col">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15951.83346854826!2d116.9027472!3d-1.2680568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df1480f07a8ef1b%3A0x6c0afc08a88d40f!2sBandar%20Udara%20Internasional%20Sultan%20Aji%20Muhammad%20Sulaiman%20Sepinggan!5e0!3m2!1sid!2sid!4v1693430000000!5m2!1sid!2sid"
-          width="250" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-      </div>
-      <div class="footer-col">
-        <h3>TI</h3>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="services.html">Our Services</a></li>
-        </ul>
-        <h3>Support</h3>
-        <ul>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Innovation</h3>
-        <ul>
-          <li><a href="development.html">Development</a></li>
-          <li><a href="planning.html">Planning</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Our Vendor</h3>
-        <ul><li>PT. Angkasa Pura Supports</li></ul>
-        <h3>Follow Us</h3>
-        <div class="social-media">
-          <a href="https://www.instagram.com/ap_supports.bpn" target="_blank">
-            <img src="images/instagram.png" alt="Instagram" class="social-icon">
-          </a>
-        </div>
+<!-- Footer -->
+<footer class="footer-main">
+  <div class="footer-container">
+    <div class="footer-col">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="250" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <div class="footer-col">
+      <h3>TI</h3>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Services</a></li>
+      </ul>
+      <h3>Support</h3>
+      <ul>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Innovation</h3>
+      <ul>
+        <li><a href="#">Development</a></li>
+        <li><a href="#">Planning</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Our Vendor</h3>
+      <ul><li>PT. Angkasa Pura Supports</li></ul>
+      <h3>Follow Us</h3>
+      <div class="social-media">
+        <img src="images/fb.png" alt="FB" class="social-icon">
+        <img src="images/ig.png" alt="IG" class="social-icon">
+        <img src="images/yt.png" alt="YT" class="social-icon">
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>Sepinggan, Balikpapan Selatan, Kota Balikpapan, Kalimantan Timur</p>
-      <p>Telp : 0542 - 757 - 7009</p>
-      <p>Email : <a href="mailto:elband.sepinganairport@gmail.com">elband.sepinganairport@gmail.com</a></p>
-    </div>
-  </footer>
-</div>
+  </div>
+  <div class="footer-bottom">&copy; 2025 AP Technical</div>
+</footer>
 
-<!-- SCRIPT -->
 <script>
-  // Navbar Hide Saat Scroll
-  let lastScrollTop = 0;
-  const navbar = document.querySelector("nav");
-  window.addEventListener("scroll", function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop > lastScrollTop) { navbar.classList.add("hide"); } 
-    else { navbar.classList.remove("hide"); }
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-  });
-
-  // Burger Menu Toggle
-  const burger = document.getElementById('burgerMenu');
+  // Burger menu toggle
+  const burger = document.getElementById('burger');
   const navLinks = document.getElementById('navLinks');
-  const navItems = navLinks.querySelectorAll('a');
-
   burger.addEventListener('click', () => {
     navLinks.classList.toggle('show');
-    burger.classList.toggle('active');
-  });
-
-  // Tutup menu saat link diklik
-  navItems.forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('show');
-      burger.classList.remove('active');
-    });
-  });
-
-  // Animasi Cards
-  document.addEventListener("DOMContentLoaded", function() {
-    const section = document.querySelector(".cards-wrapper");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) section.classList.add("show");
-      });
-    }, { threshold: 0.3 });
-    observer.observe(section);
-  });
-
-  // Splash Screen
-  document.addEventListener("DOMContentLoaded", function() {
-    const splashScreen = document.getElementById("splashScreen");
-    const mainContent = document.getElementById("mainContent");
-    setTimeout(() => {
-      splashScreen.style.opacity = "0";
-      setTimeout(() => {
-        splashScreen.style.display = "none";
-        mainContent.classList.add("visible");
-      }, 500);
-    }, 3000);
   });
 </script>
 </body>
