@@ -34,17 +34,25 @@
       width: auto;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 25px;
-    }
+.nav-links {
+  display: flex;
+  align-items: center; /* pastikan menu sejajar vertikal */
+  gap: 25px;
+  height: 100%;        /* menu ikut tinggi navbar */
+}
 
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      position: relative;
-    }
+.nav-links a {
+  display: flex;
+  align-items: center; /* teks di tengah vertikal */
+  height: 100%;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;          /* penting: buang padding atas/bawah */
+  margin: 0;
+  transition: color 0.3s ease;
+}
 
     .nav-links a::after {
       content: "";
