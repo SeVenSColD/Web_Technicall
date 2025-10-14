@@ -261,11 +261,32 @@
     }
 
     /* ========== FOOTER ========== */
-    .footer-main {
-      background: #121212;
-      color: #ddd;
-      padding: 50px 20px;
-    }
+.footer-main {
+  background: #123566;
+  color: white;
+  padding: 30px 0;
+  display: block;
+  overflow: visible; /* pastikan tidak hidden */
+
+    position: relative;
+  z-index: 10;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px;
+}
+
 
     .footer-container {
       display: flex;
