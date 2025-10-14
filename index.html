@@ -223,7 +223,164 @@
   }
 }
 
+/* ================================
+   EQUIPMENT COVERAGE SECTION
+===================================*/
 
+.equipment-coverage {
+  position: relative;
+  width: 100%;
+  padding: 80px 50px;
+  background: rgba(255, 255, 255, 0.9);
+  margin-top: -100px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.equipment-coverage .section-title {
+  font-family: 'Raleway', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #123566;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ================================
+   Floating Logo Effect
+===================================*/
+.equipment-logo {
+  position: absolute;
+  width: 100px;
+  height: auto;
+  opacity: 0.9;
+  z-index: 2;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(0, 150, 255, 0.7));
+  transition: transform 0.3s ease;
+}
+
+.equipment-logo:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 20px rgba(0, 200, 255, 1));
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Posisi acak logo */
+.logo1 { top: 20px; left: 40px; }
+.logo2 { top: 50px; right: 60px; }
+.logo3 { bottom: 40px; left: 80px; }
+.logo4 { bottom: 60px; right: 200px; }
+.logo5 { top: 10px; left: 45%; }
+
+/* ================================
+   Coverage Content Layout
+===================================*/
+.coverage-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap; /* agar rapi di mobile */
+}
+
+.coverage-images {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.coverage-images img {
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.coverage-images img:hover {
+  transform: scale(1.05);
+}
+
+/* Box text */
+.coverage-text {
+  background: #222;
+  color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  line-height: 1.6;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+  font-size: 16px;
+  text-align: justify;
+  transition: transform 0.3s ease;
+}
+
+.coverage-text:hover {
+  transform: translateY(-5px);
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+===================================*/
+@media (max-width: 992px) {
+  .equipment-logo {
+    width: 80px;
+  }
+
+  .coverage-images img {
+    width: 250px;
+  }
+
+  .coverage-text {
+    max-width: 90%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .equipment-coverage .section-title {
+    font-size: 28px;
+  }
+
+  .coverage-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .coverage-images {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .coverage-images img {
+    width: 45%;
+    min-width: 180px;
+  }
+
+  .equipment-logo {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .coverage-images img {
+    width: 100%;
+  }
+
+  .equipment-logo {
+    display: none; /* sembunyikan logo di layar kecil supaya tidak mengganggu */
+  }
+}
+
+    
     @media (max-width: 1024px) {
       nav { padding: 15px 20px; }
       .logo img { height: 60px; }
