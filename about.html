@@ -394,6 +394,60 @@ body::before {
   .section-title { font-size: 24px; }
   .about-text { font-size: 14px; }
 }
+
+  /* Responsive Map */
+.map-responsive {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%; /* Rasio 16:9 */
+  border-radius: 10px;
+}
+
+.map-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Footer responsive */
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .map-responsive {
+    width: 90%;
+    padding-top: 56.25%;
+    margin-bottom: 20px;
+  }
+
+  .footer-col {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
 </style>
 
 </head>
@@ -471,64 +525,50 @@ body::before {
 </section>
 
 <!-- FOOTER -->
+<!-- Footer -->
 <footer class="footer-main">
   <div class="footer-container">
-
-    <!-- Kolom 1 - Map -->
-    <div class="footer-col">
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15951.83346854826!2d116.9027472!3d-1.2680568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df1480f07a8ef1b%3A0x6c0afc08a88d40f!2sBandar%20Udara%20Internasional%20Sultan%20Aji%20Muhammad%20Sulaiman%20Sepinggan!5e0!3m2!1sid!2sid!4v1693430000000!5m2!1sid!2sid"
-        width="250" 
-        height="200" 
-        style="border:0;" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+    <div class="footer-col map-col">
+      <div class="map-responsive">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63767.94858949614!2d116.868!3d-1.2613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df1472e0db8bd79%3A0x3c24197833beca60!2sBandar%20Udara%20Internasional%20Sultan%20Aji%20Muhammad%20Sulaiman%20Sepinggan%20Balikpapan!5e0!3m2!1sid!2sid!4v1697312345678!5m2!1sid!2sid" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
     </div>
 
-    <!-- Kolom 2 - TI & Support -->
     <div class="footer-col">
       <h3>TI</h3>
       <ul>
         <li><a href="#">About Us</a></li>
-        <li><a href="#Services">Our Services</a></li>
+        <li><a href="#">Our Services</a></li>
       </ul>
       <h3>Support</h3>
       <ul>
-        <li><a href="#">Blog</a></li>
         <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Gallery</a></li>
       </ul>
     </div>
 
-    <!-- Kolom 3 - Innovation -->
     <div class="footer-col">
       <h3>Innovation</h3>
       <ul>
         <li><a href="#">Development</a></li>
-        <li><a href="#">Field Industrial Practice</a></li>
         <li><a href="#">Planning</a></li>
       </ul>
     </div>
 
-    <!-- Kolom 4 - Vendor -->
     <div class="footer-col">
       <h3>Our Vendor</h3>
-      <ul>
-        <li>CV. Menara Timur</li>
-        <li>PT. Jatimas Angkasa</li>
-        <li>PT. Angkasa Pura Supports</li>
-      </ul>
+      <ul><li>PT. Angkasa Pura Supports</li></ul>
+      <h3>Follow Us</h3>
+      <div class="social-media">
+        <img src="images/instagram.png" alt="Instagram" class="social-icon">
+      </div>
     </div>
   </div>
-
-  <!-- Bawah Footer -->
-  <div class="footer-bottom">
-    <p>Sepinggan, Balikpapan Selatan, Kota Balikpapan, Kalimantan Timur</p>
-    <p>Telp : 0542 - 757 - 7009</p>
-    <p>Email : <a href="mailto:elband.sepinganairport@gmail.com">elband.sepinganairport@gmail.com</a></p>
-  </div>
+  <div class="footer-bottom">&copy; 2025 AP Technical</div>
 </footer>
 
 <script>
