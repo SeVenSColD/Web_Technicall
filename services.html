@@ -829,6 +829,36 @@ body::before {
   }
 }
 
+        @media (max-width: 768px) {
+  /* Susun ulang urutan pada section BIS */
+  #content .section-header {
+    order: 1; /* Header (Airport Technology + Logo injourney + Service) tetap paling atas */
+  }
+
+  #content .content-image {
+    order: 2; /* Gambar BIS muncul setelah header */
+  }
+
+  #content .content-text {
+    order: 3; /* Teks BIS muncul setelah gambar */
+  }
+
+  /* Pastikan properti flex aktif */
+  #content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 15px;
+    gap: 15px;
+    text-align: center;
+  }
+
+  #content .content-image img {
+    max-width: 100%;
+    margin-top: 0;
+  }
+}
+
 
     </style>
 </head>
