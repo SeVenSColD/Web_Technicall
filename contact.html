@@ -16,53 +16,124 @@
       overflow-x: hidden;
     }
 
-    /* ====== NAVBAR ====== */
-    #navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      padding: 15px 50px;
-      background: linear-gradient(to right, #5a7fa3, #123566);
-      transition: top 0.3s ease;
-      z-index: 1000;
-    }
-    #navbar.hidden { top: -100px; }
+/* ================= NAVBAR ================= */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px 50px;
+  background: linear-gradient(to right, #5a7fa3, #123566);
+  transition: top 0.3s ease;
+  z-index: 1000;
+}
 
-    .logo img {
-      height: 80px;
-      width: auto;
-      margin-right: 220px;
-    }
+#navbar.hidden {
+  top: -100px;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      margin-left: 5px;
-    }
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      bottom: -3px;
-      left: 0;
-      background-color: white;
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      transform: scaleX(1);
-    }
+.logo img {
+  height: 80px;
+  width: auto;
+  margin-right: 220px;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  margin-left: 5px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: white;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
+
+/* Tombol burger menu (hidden di desktop) */
+.menu-toggle {
+  display: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 60px;
+  z-index: 2000;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .logo img {
+    height: 60px;
+    margin-right: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  #navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .logo img {
+    height: 45px;
+    margin: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: linear-gradient(to right, #5a7fa3, #123566);
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links a { font-size: 14px; }
+}
+
 
     /* ====== Hero Section ====== */
     .hero {
@@ -315,6 +386,131 @@
     .social-icon:hover {
       transform: scale(1.2);
     }
+
+    /* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  #navbar {
+    padding: 15px 25px;
+    justify-content: space-between;
+  }
+  .logo img {
+    height: 60px;
+    margin-right: 0;
+  }
+}
+
+/* Tablet & Mobile */
+@media (max-width: 768px) {
+  /* Navbar */
+  #navbar {
+    flex-wrap: wrap;
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: linear-gradient(to right, #5a7fa3, #123566);
+    width: 100%;
+    padding: 20px 0;
+    border-radius: 10px;
+    margin-top: 15px;
+  }
+
+  .nav-links a {
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    display: block;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  /* Burger icon */
+  .burger {
+    display: block;
+    cursor: pointer;
+  }
+  .burger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+    transition: 0.3s;
+  }
+
+  /* Hero section */
+  .hero {
+    height: 70vh;
+    margin-top: 100px;
+  }
+  .hero-overlay h1 {
+    font-size: 2rem;
+  }
+  .hero-overlay p {
+    font-size: 1rem;
+  }
+
+  /* GIF */
+  .gif-container {
+    max-width: 90%;
+  }
+  .gif-image {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  /* Corner Box */
+  .corner-box {
+    padding: 50px 20px;
+    margin: 40px 15px;
+  }
+
+  .corner-img {
+    width: 100px;
+  }
+
+  /* Footer */
+  .footer-container {
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+  }
+  .footer-col iframe {
+    width: 100% !important;
+    height: 200px !important;
+  }
+  .social-media {
+    justify-content: center;
+  }
+}
+
+/* Mobile kecil */
+@media (max-width: 480px) {
+  .hero-overlay h1 {
+    font-size: 1.8rem;
+  }
+  .corner-box {
+    padding: 30px 15px;
+  }
+  .corner-content h2 {
+    font-size: 1.3rem;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    max-width: 100%;
+    font-size: 0.9rem;
+  }
+  .contact-form button {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -331,19 +527,20 @@
   </div>
 
   <!-- NAVBAR -->
-  <nav id="navbar">
-    <div class="logo">
-      <img src="images/logoinjourney.png" alt="Logo">
-    </div>
-    <div class="nav-links">
-      <a href="index.html" >Home</a>
-      <a href="about.html">About Us</a>
-      <a href="services.html">Our Service</a>
-      <a href="contact.html"class="active">Contact us</a>
-      <a href="development.html">Development</a>
-      <a href="planning.html">Planning</a>
-    </div>
-  </nav>
+<nav id="navbar">
+  <div class="logo" onclick="location.href='index.html'">
+    <img src="images/logoinjourney.png" alt="Logo">
+  </div>
+  <div class="menu-toggle" id="menu-toggle">&#9776;</div> <!-- burger icon -->
+  <div class="nav-links" id="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Our Service</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="development.html">Development</a>
+    <a href="planning.html">Planning</a>
+  </div>
+</nav>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -442,20 +639,47 @@
     </div>
   </footer>
 
-  <script>
-    // Navbar Scroll
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Animasi fade-in section saat scroll
+    const sections = document.querySelectorAll(".about-section");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+        else entry.target.classList.remove("visible");
+      });
+    }, { threshold: 0.2 });
+    sections.forEach((section) => observer.observe(section));
+
+    // Toggle menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    document.querySelectorAll('#nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+
+    // Navbar auto-hide saat scroll
     let lastScrollTop = 0;
     const navbar = document.getElementById("navbar");
-    window.addEventListener("scroll", function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > lastScrollTop) {
-            navbar.classList.add("hidden"); 
-        } else {
-            navbar.classList.remove("hidden");
-        }
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    window.addEventListener("scroll", () => {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        navbar.classList.add("hidden");
+      } else {
+        navbar.classList.remove("hidden");
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
-  </script>
+  });
+</script>
+
 
 </body>
 </html>
