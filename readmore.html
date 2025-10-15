@@ -154,6 +154,25 @@
       flex-wrap: wrap;
     }
 
+    @media (max-width: 768px) {
+  .content-section, .content-bas, #content2 {
+    flex-direction: column;         /* Ubah dari baris ke kolom */
+    padding: 30px 20px;             /* Kurangi padding agar tidak terlalu lebar */
+    gap: 20px;                      /* Kurangi jarak antar elemen */
+    justify-content: center;       /* Biar semua di tengah */
+    align-items: center;
+  }
+
+  .content-section img,
+  .content-bas img,
+  #content2 img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+
     /* ====== Layout Gambar & Teks ====== */
 .content-section {
   display: flex;
