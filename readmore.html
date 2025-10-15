@@ -160,7 +160,7 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
-  padding: 60px 40px;
+  padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -367,6 +367,20 @@
   .back-section .back-link {
     font-size: 0.9rem;
     padding: 10px 20px;
+  }
+}
+
+    img {
+  max-width: 100%;    /* gambar akan menyesuaikan lebar container */
+  height: auto;       /* proporsi gambar tetap */
+  display: block;     /* menghilangkan jarak kosong di bawah gambar */
+  margin: 0 auto;     /* biar gambar tetap di tengah */
+}
+
+/* Untuk layar kecil (mobile) */
+@media (max-width: 768px) {
+  img {
+    max-width: 90%;   /* beri sedikit jarak kanan kiri */
   }
 }
 
