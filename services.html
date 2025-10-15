@@ -736,6 +736,78 @@ body::before {
     height: 60px;
   }
 
+/* =================== RESPONSIVE IMPROVEMENT =================== */
+@media (max-width: 768px) {
+
+  /* Susun ulang gambar dan teks di semua content section */
+  .content-section,
+  .content-bas,
+  #content2 {
+    display: flex;
+    flex-direction: column;  /* urut atas-bawah */
+    align-items: center;
+    padding: 30px 15px;
+    gap: 15px;
+    text-align: center;
+  }
+
+  /* Jika ingin gambar di atas teks secara konsisten */
+  .content-section .content-image,
+  #content2 .content-image,
+  .content-bas .content-image {
+    order: -1;
+  }
+
+  .content-text,
+  .content-image {
+    max-width: 100%;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  .content-image img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .content-text p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0 5px;
+  }
+
+  /* Kurangi tinggi video hero agar pas di layar kecil */
+  .hero {
+    height: 60vh;
+  }
+  .hero-overlay-text h1 {
+    font-size: 1.8rem;
+  }
+  .hero-overlay-text p {
+    font-size: 1rem;
+  }
+}
+
+/* =================== HANDPHONE KECIL =================== */
+@media (max-width: 480px) {
+  .content-text p {
+    font-size: 0.9rem;
+  }
+  .content-image img {
+    border-radius: 6px;
+  }
+  .section-logo {
+    height: 50px;
+  }
+  .hero-overlay-text {
+    width: 95%;
+  }
+}
+
+    
   /* Footer */
   .footer-container {
     flex-direction: column;
