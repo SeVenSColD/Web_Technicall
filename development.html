@@ -428,53 +428,61 @@
 </footer>
 
 <script>
-  // Navbar Scroll Hide/Show
-  let lastScrollTop = 0;
   const navbar = document.getElementById("navbar");
-  window.addEventListener("scroll", function() {
+  let lastScrollTop = 0;
+  window.addEventListener("scroll", () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) navbar.classList.add("hidden");
+    else navbar.classList.remove("hidden");
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+</script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Animasi fade-in section saat scroll
+    const sections = document.querySelectorAll(".about-section");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+        else entry.target.classList.remove("visible");
+      });
+    }, { threshold: 0.2 });
+    sections.forEach((section) => observer.observe(section));
+
+    // Toggle menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    document.querySelectorAll('#nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+
+    // Navbar au
+    to-hide saat scroll
+    let lastScrollTop = 0;
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       if (scrollTop > lastScrollTop) {
-          navbar.classList.add("hidden");
+        navbar.classList.add("hidden");
       } else {
-          navbar.classList.remove("hidden");
+        navbar.classList.remove("hidden");
       }
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
   });
-
-  // Burger menu toggle
-  const burger = document.getElementById('burger');
-  const navLinks = document.getElementById('navLinks');
-  burger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-  });
-
-  // Animation on scroll
-  document.addEventListener('DOMContentLoaded', function() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-
-    const devTitle = document.querySelector('.development-title');
-    if (devTitle) observer.observe(devTitle);
-    document.querySelectorAll('.development-item').forEach(item => observer.observe(item));
-
-    // Modal Gambar
-    const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("modalImage");
-    const developmentImg = document.getElementById("development-img");
-    const closeModal = document.querySelector(".close-modal");
-
-    developmentImg.onclick = function(){
-      modal.style.display = "block";
-      modalImg.src = this.src;
-    }
-    closeModal.onclick = function() { modal.style.display = "none"; }
-    window.onclick = function(event) { if (event.target == modal) modal.style.display = "none"; }
-  });
-
-  
 </script>
 </body>
 </html>
