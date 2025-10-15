@@ -28,52 +28,124 @@ body::before {
 }
 
         /* NAVBAR */
-        #navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            padding: 15px 50px;
-            background: linear-gradient(to right, #5a7fa3, #123566);
-            transition: top 0.3s ease;
-            z-index: 1000;
-        }
-        #navbar.hidden { top: -100px; }
+/* ================= NAVBAR ================= */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px 50px;
+  background: linear-gradient(to right, #5a7fa3, #123566);
+  transition: top 0.3s ease;
+  z-index: 1000;
+}
 
-        .logo img {
-            height: 80px;
-            width: auto;
-            margin-right: 220px;
-        }
+#navbar.hidden {
+  top: -100px;
+}
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            margin-left: 5px;
-        }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-        }
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: -3px;
-            left: 0;
-            background-color: white;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            transform: scaleX(1);
-        }
+.logo img {
+  height: 80px;
+  width: auto;
+  margin-right: 220px;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  margin-left: 5px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: white;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
+
+/* Tombol burger menu (hidden di desktop) */
+.menu-toggle {
+  display: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 60px;
+  z-index: 2000;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .logo img {
+    height: 60px;
+    margin-right: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  #navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .logo img {
+    height: 45px;
+    margin: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: linear-gradient(to right, #5a7fa3, #123566);
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links a { font-size: 14px; }
+}
+
 
         .hero {
             position: relative;
@@ -991,10 +1063,35 @@ Fire alarm system adalah sebuah sistem penanda bahaya terhadap kebakaran yang be
 </script>
 
 <script>
-function toggleMenu() {
-  document.querySelector('.nav-links').classList.toggle('active');
-}
+  // === Navbar toggle ===
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+
+  // Tutup menu saat klik link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('show');
+    });
+  });
+
+  // === Navbar auto hide saat scroll ===
+  let lastScrollTop = 0;
+  const navbar = document.getElementById("navbar");
+  window.addEventListener("scroll", function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+      navbar.classList.add("hidden");
+    } else {
+      navbar.classList.remove("hidden");
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
 </script>
+
 
     
 </body>
