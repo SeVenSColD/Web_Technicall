@@ -24,19 +24,6 @@
       z-index: -1;
     }
 
-    /* ========== NAVBAR ========== */
-    #navbar {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px 60px;
-      background: linear-gradient(to right, #5a7fa3, #123566);
-      transition: top 0.3s ease;
-      z-index: 1000;
-    }
 
 /* ================= NAVBAR ================= */
 #navbar {
@@ -46,7 +33,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-      justify-content: center;  /* 👉 ini membuat isi navbar ketengah */
+  justify-content: flex-start;   /* 👉 logo tetap di kiri */
   padding: 15px 50px;
   background: linear-gradient(to right, #5a7fa3, #123566);
   transition: top 0.3s ease;
@@ -57,19 +44,24 @@
   top: -100px;
 }
 
+/* Logo */
 .logo img {
   height: 80px;
   width: auto;
-  margin-right: 220px;
+  margin-right: 0;   /* ❌ buang margin manual yang bikin geser */
   cursor: pointer;
 }
 
+/* Nav links di tengah layar */
 .nav-links {
   display: flex;
   gap: 30px;
-  margin-left: 5px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
+/* Teks menu */
 .nav-links a {
   color: white;
   text-decoration: none;
@@ -77,6 +69,7 @@
   position: relative;
 }
 
+/* Garis bawah animasi */
 .nav-links a::after {
   content: "";
   position: absolute;
@@ -93,6 +86,7 @@
 .nav-links a.active::after {
   transform: scaleX(1);
 }
+
 
 /* Tombol burger menu (hidden di desktop) */
 .menu-toggle {
