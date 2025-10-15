@@ -559,6 +559,133 @@ body::before {
   transform: scale(1.2);
 }
 
+/* ===================== RESPONSIVE ===================== */
+
+/* Tablet & Mobile */
+@media (max-width: 992px) {
+  /* NAVBAR */
+  #navbar {
+    flex-wrap: wrap;
+    padding: 15px 20px;
+    justify-content: space-between;
+  }
+
+  .logo img {
+    height: 60px;
+    margin-right: 0;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    display: none; /* disembunyikan default */
+    background: linear-gradient(to right, #5a7fa3, #123566);
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  /* Burger Menu */
+  .burger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .burger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+    transition: 0.3s;
+  }
+}
+
+/* Mobile kecil */
+@media (max-width: 768px) {
+
+  /* Hero Section */
+  .hero-overlay-text {
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+  }
+
+  .hero-overlay-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-overlay-text p {
+    font-size: 1rem;
+  }
+
+  /* Content Section */
+  .content-section,
+  .content-bas,
+  #content2 {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 20px;
+  }
+
+  .content-text,
+  .content-image {
+    max-width: 100%;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  .content-image img {
+    max-width: 100%;
+    margin-top: 0;
+  }
+
+  /* Header Section */
+  .section-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .left-text, .right-text {
+    padding: 0;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .section-logo {
+    height: 60px;
+  }
+
+  /* Footer */
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-col {
+    max-width: 90%;
+  }
+
+  .footer-col iframe {
+    width: 100% !important;
+    height: 200px !important;
+  }
+
+  .social-media {
+    justify-content: center;
+  }
+}
+
+
     </style>
 </head>
 <body>
