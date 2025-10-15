@@ -126,9 +126,10 @@
     /* === DEVELOPMENT CONTENT === */
     .development-content {
       padding: 80px 20px;
-      background: #fff;
       position: relative;
+      background: transparent;
       z-index: 1;
+      overflow: hidden;
     }
 
     .development-title {
@@ -168,19 +169,31 @@
     .item-content h3 { font-size: 1.3rem; margin-bottom: 10px; color: #333; }
     .item-content p { color: #666; line-height: 1.6; }
 
+    /* Dekorasi background kiri & kanan */
     .dev-bg-left, .dev-bg-right {
-    position: absolute;
-    width: 400px;
-    height: auto;
-    z-index: 0; /* atau 1 */
-    opacity: 0.3;
-  }
-  .development-content {
-    position: relative;
-    background: transparent; /* atau warna lain sesuai desain */
-  }
+      position: absolute;
+      width: 400px;
+      height: auto;
+      z-index: 0;
+      opacity: 0.3;
+    }
+    .dev-bg-left {
+      top: 50%;
+      left: -60px;
+      transform: translateY(-50%);
+    }
+    .dev-bg-right {
+      top: 50%;
+      right: -60px;
+      transform: translateY(-50%) scaleX(-1);
+    }
 
-    
+    @media (max-width: 768px) {
+      .dev-bg-left, .dev-bg-right {
+        display: none;
+      }
+    }
+
     /* === MODAL === */
     .image-modal {
       display: none;
@@ -248,6 +261,10 @@
 
 <!-- CONTENT -->
 <section class="development-content">
+  <!-- Dekorasi background kiri & kanan -->
+  <img src="images/bgblue0.png" alt="Background decoration left" class="dev-bg-left">
+  <img src="images/bgblue0.png" alt="Background decoration right" class="dev-bg-right">
+
   <h2 class="development-title">Our project development</h2>
   <div class="development-items">
     <div class="development-item">
