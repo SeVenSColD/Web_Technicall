@@ -37,19 +37,125 @@
       transition: top 0.3s ease;
       z-index: 1000;
     }
-    #navbar.hidden { top: -100px; }
-    .logo img { height: 70px; width: auto; cursor: pointer; }
 
-    .nav-links { display: flex; gap: 30px; }
-    .nav-links a {
-      color: white; text-decoration: none; font-weight: 500; position: relative;
-    }
-    .nav-links a::after {
-      content: ""; position: absolute; width: 100%; height: 2px; bottom: -3px; left: 0;
-      background-color: white; transform: scaleX(0); transition: transform 0.3s ease;
-    }
-    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-    .menu-toggle { display: none; font-size: 30px; color: white; cursor: pointer; }
+/* ================= NAVBAR ================= */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px 50px;
+  background: linear-gradient(to right, #5a7fa3, #123566);
+  transition: top 0.3s ease;
+  z-index: 1000;
+}
+
+#navbar.hidden {
+  top: -100px;
+}
+
+.logo img {
+  height: 80px;
+  width: auto;
+  margin-right: 220px;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  margin-left: 5px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: white;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
+
+/* Tombol burger menu (hidden di desktop) */
+.menu-toggle {
+  display: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 60px;
+  z-index: 2000;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .logo img {
+    height: 60px;
+    margin-right: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  #navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .logo img {
+    height: 45px;
+    margin: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: linear-gradient(to right, #5a7fa3, #123566);
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links a { font-size: 14px; }
+}
+
 
     /* ========== CONTENT SECTION ========== */
     .content-section {
@@ -181,14 +287,14 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- ================= NAVBAR (SAMA DENGAN ABOUT) ================= -->
 <nav id="navbar">
   <div class="logo" onclick="location.href='index.html'">
     <img src="images/logoinjourney.png" alt="Logo">
   </div>
-  <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+  <div class="menu-toggle" id="menu-toggle">&#9776;</div> <!-- burger icon -->
   <div class="nav-links" id="nav-links">
-    <a href="index.html" class="active">Home</a>
+    <a href="index.htm	l" class="active">Home</a>
     <a href="about.html">About Us</a>
     <a href="services.html">Our Service</a>
     <a href="contact.html">Contact Us</a>
@@ -348,6 +454,47 @@
   const navLinks = document.getElementById('nav-links');
   menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('show');
+  });
+</script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Animasi fade-in section saat scroll
+    const sections = document.querySelectorAll(".about-section");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+        else entry.target.classList.remove("visible");
+      });
+    }, { threshold: 0.2 });
+    sections.forEach((section) => observer.observe(section));
+
+    // Toggle menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    document.querySelectorAll('#nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+
+    // Navbar au
+    to-hide saat scroll
+    let lastScrollTop = 0;
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        navbar.classList.add("hidden");
+      } else {
+        navbar.classList.remove("hidden");
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
   });
 </script>
 
