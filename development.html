@@ -15,122 +15,88 @@
     }
 
     /* ================= NAVBAR ================= */
-#navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 15px 50px;
-  background: linear-gradient(to right, #5a7fa3, #123566);
-  transition: top 0.3s ease;
-  z-index: 1000;
-}
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 50px;
+      background: linear-gradient(to right, #5a7fa3, #123566);
+      transition: top 0.3s ease;
+      z-index: 1000;
+    }
+    #navbar.hidden { top: -100px; }
 
-#navbar.hidden {
-  top: -100px;
-}
+    .logo img {
+      height: 80px;
+      width: auto;
+      cursor: pointer;
+    }
 
-.logo img {
-  height: 80px;
-  width: auto;
-  margin-right: 220px;
-  cursor: pointer;
-}
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
 
-.nav-links {
-  display: flex;
-  gap: 30px;
-  margin-left: 5px;
-}
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+    }
 
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  position: relative;
-}
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: -3px;
+      left: 0;
+      background-color: white;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
 
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: -3px;
-  left: 0;
-  background-color: white;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
+    /* BURGER TOGGLE */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .burger span {
+      width: 28px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  transform: scaleX(1);
-}
-
-/* Tombol burger menu (hidden di desktop) */
-.menu-toggle {
-  display: none;
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 60px;
-  z-index: 2000;
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 1024px) {
-  .logo img {
-    height: 60px;
-    margin-right: 100px;
-  }
-}
-
-@media (max-width: 768px) {
-  #navbar {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-  }
-
-  .logo img {
-    height: 45px;
-    margin: 0;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    background: linear-gradient(to right, #5a7fa3, #123566);
-    width: 100%;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 10px 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-links a {
-    padding: 12px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-links a { font-size: 14px; }
-}
+    /* RESPONSIVE NAVBAR */
+    @media (max-width: 768px) {
+      .burger { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: linear-gradient(to right, #5a7fa3, #123566);
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+      .nav-links.show { display: flex; }
+      .nav-links a {
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+      }
+    }
 
     /* === HERO SECTION === */
     .hero {
@@ -155,7 +121,6 @@
       font-size: 3rem;
       font-weight: 700;
       z-index: 1;
-      animation: fadeInDown 1s ease-out;
     }
 
     /* === DEVELOPMENT CONTENT === */
@@ -166,40 +131,11 @@
       z-index: 1;
     }
 
-    .dev-bg-left, .dev-bg-right {
-      position: absolute;
-      width: 400px;
-      height: auto;
-      z-index: -1;
-      opacity: 0.3;
-    }
-    .dev-bg-left { top: 50%; left: -60px; transform: translateY(-50%); }
-    .dev-bg-right { top: 50%; right: -60px; transform: translateY(-50%) scaleX(-1); }
-
     .development-title {
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 40px;
       text-align: center;
-      position: relative;
-      padding-bottom: 15px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .development-title.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .development-title::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
-      background: linear-gradient(to right, #5a7fa3, #123566);
     }
 
     .development-items {
@@ -207,9 +143,8 @@
       flex-direction: column;
       max-width: 800px;
       margin: 0 auto;
-      position: relative;
-      z-index: 2;
     }
+
     .development-item {
       display: flex;
       flex-direction: column;
@@ -218,14 +153,8 @@
       border-radius: 8px;
       background: #f9f9f9;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .development-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+
     .item-image {
       width: 100%;
       height: auto;
@@ -235,13 +164,9 @@
       transition: transform 0.3s ease;
     }
     .item-image:hover { transform: scale(1.02); }
+
     .item-content h3 { font-size: 1.3rem; margin-bottom: 10px; color: #333; }
     .item-content p { color: #666; line-height: 1.6; }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
 
     /* === MODAL === */
     .image-modal {
@@ -251,7 +176,6 @@
       left: 0; top: 0;
       width: 100%; height: 100%;
       background-color: rgba(0,0,0,0.9);
-      animation: fadeIn 0.3s;
     }
     .modal-content {
       margin: auto;
@@ -274,59 +198,13 @@
       font-size: 40px;
       font-weight: bold;
       cursor: pointer;
-      z-index: 1001;
     }
-    .close-modal:hover { color: #bbb; }
 
     /* === FOOTER === */
     .footer-main {
       background: #121212;
       color: #ddd;
       padding: 60px 20px 20px;
-    }
-    .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: space-between;
-    }
-    .footer-col { flex: 1 1 200px; min-width: 200px; }
-    .footer-col h3 { font-size: 18px; font-weight: 700; margin-bottom: 15px; color: #fff; }
-    .footer-col ul { list-style: none; padding: 0; margin: 0; }
-    .footer-col ul li { margin-bottom: 10px; font-size: 15px; }
-    .footer-col ul li a { color: #bbb; text-decoration: none; transition: color 0.3s ease; }
-    .footer-col ul li a:hover { color: #fff; }
-    .footer-bottom {
-      text-align: center;
-      font-size: 14px;
-      color: #aaa;
-      border-top: 1px solid #333;
-      padding-top: 15px;
-      margin-top: 20px;
-    }
-
-    .social-media { display: flex; gap: 15px; margin-top: 15px; }
-    .social-icon { width: 20px; height: 20px; transition: transform 0.3s ease; }
-    .social-icon:hover { transform: scale(1.2); }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .burger { display: flex; }
-
-      .hero h1 { font-size: 2rem; padding: 0 20px; }
-
-      .dev-bg-left, .dev-bg-right { display: none; }
-
-      .development-title { font-size: 1.6rem; }
-      .item-content h3 { font-size: 1.1rem; }
-      .footer-container { flex-direction: column; align-items: flex-start; }
-      .footer-col iframe { width: 100%; height: 180px; }
-    }
-
-    @media (max-width: 480px) {
-      .hero { height: 70vh; }
-      .hero h1 { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -357,11 +235,7 @@
 
 <!-- CONTENT -->
 <section class="development-content">
-  <img src="images/bgblue0.png" alt="Background decoration left" class="dev-bg-left">
-  <img src="images/bgblue0.png" alt="Background decoration right" class="dev-bg-right">
-
   <h2 class="development-title">Our project development</h2>
-
   <div class="development-items">
     <div class="development-item">
       <div class="item-content">
@@ -379,57 +253,10 @@
   <img class="modal-content" id="modalImage">
 </div>
 
-<!-- FOOTER -->
-<footer class="footer-main">
-  <div class="footer-container">
-    <div class="footer-col">
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15951.83346854826!2d116.9027472!3d-1.2680568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df1480f07a8ef1b%3A0x6c0afc08a88d40f!2sBandar%20Udara%20Internasional%20Sultan%20Aji%20Muhammad%20Sulaiman%20Sepinggan!5e0!3m2!1sid!2sid!4v1693430000000!5m2!1sid!2sid"
-        width="250" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-
-    <div class="footer-col">
-      <h3>TI</h3>
-      <ul>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Our Services</a></li>
-      </ul>
-      <h3>Support</h3>
-      <ul>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h3>Innovation</h3>
-      <ul>
-        <li><a href="development.html">Development</a></li>
-        <li><a href="planning.html">Planning</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h3>Our Vendor</h3>
-      <ul><li>PT. Angkasa Pura Supports</li></ul>
-      <h3>Follow Us</h3>
-      <div class="social-media">
-        <a href="https://www.instagram.com/ap_supports.bpn" target="_blank">
-          <img src="images/instagram.png" alt="Instagram" class="social-icon">
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>Sepinggan, Balikpapan Selatan, Kota Balikpapan, Kalimantan Timur</p>
-    <p>Telp : 0542 - 757 - 7009</p>
-    <p>Email : <a href="mailto:elband.sepinganairport@gmail.com">elband.sepinganairport@gmail.com</a></p>
-  </div>
-</footer>
-
 <script>
-  const navbar = document.getElementById("navbar");
+  // Navbar hide saat scroll
   let lastScrollTop = 0;
+  const navbar = document.getElementById("navbar");
   window.addEventListener("scroll", () => {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (scrollTop > lastScrollTop) navbar.classList.add("hidden");
@@ -437,52 +264,30 @@
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   });
 
-  const menuToggle = document.getElementById('menu-toggle');
-  const navLinks = document.getElementById('nav-links');
-  menuToggle.addEventListener('click', () => {
+  // Burger toggle
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
     navLinks.classList.toggle('show');
   });
+
+  // Modal image
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  const developmentImg = document.getElementById("development-img");
+  const closeModal = document.querySelector(".close-modal");
+
+  developmentImg.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+  }
+  closeModal.onclick = function() {
+    modal.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target == modal) modal.style.display = "none";
+  }
 </script>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Animasi fade-in section saat scroll
-    const sections = document.querySelectorAll(".about-section");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-        else entry.target.classList.remove("visible");
-      });
-    }, { threshold: 0.2 });
-    sections.forEach((section) => observer.observe(section));
-
-    // Toggle menu
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.getElementById('nav-links');
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-
-    document.querySelectorAll('#nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('show');
-      });
-    });
-
-    // Navbar au
-    to-hide saat scroll
-    let lastScrollTop = 0;
-    const navbar = document.getElementById("navbar");
-    window.addEventListener("scroll", () => {
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      if (scrollTop > lastScrollTop) {
-        navbar.classList.add("hidden");
-      } else {
-        navbar.classList.remove("hidden");
-      }
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    });
-  });
-</script>
 </body>
 </html>
