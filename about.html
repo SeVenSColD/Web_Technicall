@@ -216,60 +216,96 @@ body::before {
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
-/* ================================
-   FOOTER
-================================ */
+
+ /* ========== FOOTER ========== */
+footer {
+  position: relative;
+  z-index: 10;
+}
+
+  
 .footer-main {
   background: #121212;
-  color: #ddd;
-  padding: 60px 40px 20px;
+  color: white;
+  padding: 30px 0;
+  display: block;
+  overflow: visible; /* pastikan tidak hidden */
+
+    position: relative;
+  z-index: 10;
 }
+
 .footer-container {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 40px;
-  margin-bottom: 30px;
+  justify-content: space-around;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: auto;
 }
+
 .footer-col {
-  flex: 1 1 200px;
+  flex: 1;
+  min-width: 200px;
+  padding: 10px;
 }
-.footer-col h3 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: #fff;
-}
-.footer-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.footer-col ul li {
-  margin-bottom: 10px;
-  font-size: 15px;
-}
-.footer-col ul li a {
-  color: #bbb;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-.footer-col ul li a:hover {
-  color: #fff;
-}
-.footer-bottom {
-  text-align: center;
-  font-size: 14px;
-  color: #aaa;
-  border-top: 1px solid #333;
-  padding-top: 15px;
-}
-.footer-bottom a {
-  color: #bbb;
-}
-.footer-bottom a:hover {
-  color: #fff;
-}
+
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
+    }
+
+    .footer-col h3 {
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      color: #bbb;
+      text-decoration: none;
+    }
+
+    .footer-col ul li a:hover {
+      color: #fff;
+    }
+
+    .social-media {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .social-icon {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icon:hover {
+      transform: scale(1.2);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+      border-top: 1px solid #333;
+      margin-top: 30px;
+    }
+
 
 /* ================================
    FLYING SNAKES
@@ -373,14 +409,45 @@ body::before {
     max-width: 100%;
   }
 
+/* Footer responsive */
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
-    align-items: flex-start;
+    text-align: center;
+    align-items: center;
   }
-  .footer-col {
-    width: 100%;
+
+  .map-responsive {
+    width: 90%;
+    padding-top: 56.25%;
     margin-bottom: 20px;
   }
+
+  .footer-col {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+      .social-media { display: flex; gap: 15px; margin-top: 15px;   justify-content: center;  /* ini yang membuat ikon ke tengah */}
+    .social-icon { width: 20px; height: 20px; transition: transform 0.3s ease; }
+    .social-icon:hover { transform: scale(1.2); }
   iframe { width: 100%; }
 }
 
@@ -543,7 +610,6 @@ body::before {
   </div>
 </section>
 
-<!-- FOOTER -->
 <!-- Footer -->
 <footer class="footer-main">
   <div class="footer-container">
@@ -583,7 +649,9 @@ body::before {
       <ul><li>PT. Angkasa Pura Supports</li></ul>
       <h3>Follow Us</h3>
       <div class="social-media">
-        <img src="images/instagram.png" alt="Instagram" class="social-icon">
+        <a href="https://www.instagram.com/ap_supports.bpn?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+          <img src="images/instagram.png" alt="Instagram" class="social-icon">
+        </a>
       </div>
     </div>
   </div>
